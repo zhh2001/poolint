@@ -1,0 +1,28 @@
+# P4 build artifacts
+build/
+*.p4i
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Logs & pcap
+log/
+logs/
+*.log
+pcap/
+*.pcap
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
