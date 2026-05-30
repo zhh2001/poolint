@@ -1,0 +1,5 @@
+table_set_default tb_swid set_swid 2
+table_add tb_ipv4_lpm set_nhop 10.0.1.1/32 => 1
+table_add tb_ipv4_lpm set_nhop 10.0.5.254/32 => 2
+table_add tb_port_idx set_local_idx 2 1 => 0
+table_add tb_port_idx set_local_idx 2 2 => 1
