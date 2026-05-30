@@ -111,12 +111,56 @@ def coverage_from_flows(topo, flows):
 
 def pick_targets(cov, d):
     """Pick d fault ports spanning the coverage distribution: always include the
-    min-coverage port; spread the rest across the sorted-by-coverage list."""
+    min-coverage port; spread the rest across the sorted-by-coverage list.
+    `cov` MUST be OBSERVED coverage (ports on actually-captured collector-bound
+    packets), not theoretical -- otherwise a target may carry no real traffic."""
     order = sorted(cov, key=lambda u: (cov[u], u))   # ascending coverage
     if d == 1:
         return [order[0]]
     idxs = sorted(set(round(i * (len(order) - 1) / (d - 1)) for i in range(d)))
     return [order[i] for i in idxs][:d]
+
+
+def observed_coverage(net, topo, raw_dir, secs=5, mbit=3, dgram=200):
+    """No-fault WARM-UP probe: run the flow set, capture at the collector, and
+    return {port_uid: #captured packets traversing it} from the raw capture.
+    This is the observable set O -- every port in it provably carries real
+    collector-bound traffic this session, so targets picked from it can't be
+    'on 0 captured paths' (the d1 bug)."""
+    import json as _json
+    col = topo.collector_name()
+    hcol = net.get(col)
+    colip = topo.host_ip(col)
+    flows = flow_set(topo)
+    cap = ("python3 %s/collector/m3a_capture.py --iface %s-eth0 --timeout %d "
+           "--label _probe --raw-dir %s > %s/_probe_capture.log 2>&1"
+           % (ROOT, col, secs + 6, raw_dir, raw_dir))
+    cproc = hcol.popen(cap, shell=True)
+    time.sleep(2.0)
+    for sh, sp in flows:
+        net.get(sh).cmd("iperf -c %s -u -b %dM -t %d -l %d -p 5001 -B %s:%d "
+                        ">/dev/null 2>&1 &"
+                        % (colip, mbit, secs, dgram, topo.host_ip(sh), sp))
+    try:
+        cproc.wait(timeout=secs + 12)
+    except subprocess.TimeoutExpired:
+        cproc.kill()
+    hcol.cmd('pkill -f iperf 2>/dev/null')
+    cov = {}
+    probe = os.path.join(raw_dir, "_probe.jsonl")
+    npk = 0
+    if os.path.exists(probe):
+        for line in open(probe):
+            line = line.strip()
+            if not line:
+                continue
+            p = _json.loads(line)
+            npk += 1
+            pp = topo.reconstruct_path(p["src"], p["dst"], p["proto"],
+                                       p["sport"], p["dport"])
+            for u in (pp or []):
+                cov[u] = cov.get(u, 0) + 1
+    return cov, npk
 
 
 def inject_fault(thrift, topo, port_uid, val, cli="simple_switch_CLI"):
@@ -135,7 +179,12 @@ def run_scenario(net, topo, thrift, label, results_dir, raw_dir, d=0,
     hcol = net.get(col)
     colip = topo.host_ip(col)
     flows = flow_set(topo)
-    cov, paths = coverage_from_flows(topo, flows)
+
+    # OBSERVED coverage from a no-fault warm-up probe (the set O); targets are
+    # chosen ONLY from ports with real captured traffic.
+    cov, probe_pkts = observed_coverage(net, topo, raw_dir)
+    info("[%s] probe: %d pkts, |O|=%d observed ports (n=%d)\n"
+         % (label, probe_pkts, len(cov), topo.n_monitored_ports()))
 
     targets = pick_targets(cov, d) if d > 0 else []
     for puid in targets:
@@ -145,6 +194,7 @@ def run_scenario(net, topo, thrift, label, results_dir, raw_dir, d=0,
           "d": len(targets),
           "n_monitored_ports": topo.n_monitored_ports(),
           "n_effective_ports": len(cov),
+          "probe_packets": probe_pkts,
           "target_coverage": {str(u): cov[u] for u in targets},
           "coverage_distribution": {str(u): cov[u] for u in cov}}
     json.dump(gt, open(os.path.join(results_dir, "%s_gt.json" % label), "w"),
