@@ -1,0 +1,50 @@
+{
+  "label": "delay_after",
+  "packets": 30,
+  "hop_count": 3,
+  "path_swids": [
+    1,
+    102,
+    4
+  ],
+  "int_bytes_per_pkt": 62,
+  "core_int_bytes_per_pkt": 44,
+  "shim_bytes": 8,
+  "perhop_bytes": 18,
+  "core_perhop_bytes": 12,
+  "per_hop": [
+    {
+      "switch_id": 1,
+      "avg_queue_depth": 0.0,
+      "max_queue_depth": 0,
+      "avg_hop_latency_us": 126.93333333333334,
+      "max_hop_latency_us": 247
+    },
+    {
+      "switch_id": 102,
+      "avg_queue_depth": 0.0,
+      "max_queue_depth": 0,
+      "avg_hop_latency_us": 99.43333333333334,
+      "max_hop_latency_us": 189
+    },
+    {
+      "switch_id": 4,
+      "avg_queue_depth": 0.0,
+      "max_queue_depth": 0,
+      "avg_hop_latency_us": 97.56666666666666,
+      "max_hop_latency_us": 165
+    }
+  ],
+  "links": [
+    {
+      "from_swid": 1,
+      "to_swid": 102,
+      "avg_link_latency_us": 258542.03333333333
+    },
+    {
+      "from_swid": 102,
+      "to_swid": 4,
+      "avg_link_latency_us": -976560.0333333333
+    }
+  ]
+}
