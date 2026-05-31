@@ -1,7 +1,7 @@
 table_set_default tb_swid set_swid 11
 table_add tb_ipv4_lpm set_nhop 10.0.0.0/24 => 3
 table_add tb_ipv4_lpm set_nhop 10.0.1.0/24 => 4
-table_add tb_ipv4_lpm ecmp_group 0.0.0.0/0 => 2
+table_set_default tb_ipv4_lpm ecmp_group 2
 table_add tb_ecmp_nhop set_nhop 0 => 1
 table_add tb_ecmp_nhop set_nhop 1 => 2
 table_add tb_port_idx set_local_idx 11 1 => 0

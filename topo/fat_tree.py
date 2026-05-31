@@ -112,7 +112,7 @@ class FatTree(object):
                 for hh in range(h):
                     hp = h + hh + 1
                     nm = "h%d_%d_%d" % (p, e, hh)
-                    ip = "10.%d.%d.%d/16" % (p, e, hh + 1)
+                    ip = "10.%d.%d.%d/8" % (p, e, hh + 1)
                     mac = "00:00:00:%02x:%02x:%02x" % (p, e, hh + 1)
                     self.hosts[nm] = {"ip": ip, "mac": mac, "leaf": ed,
                                       "leaf_port": hp, "pod": p, "edge": e}
@@ -134,7 +134,7 @@ class FatTree(object):
         led = self.edge(k - 1, h - 1)
         hp = max(self.ports[led]) + 1
         nm = "hcol"
-        ip = "10.%d.%d.254/16" % (k - 1, h - 1)
+        ip = "10.%d.%d.254/8" % (k - 1, h - 1)
         self.hosts[nm] = {"ip": ip, "mac": "00:00:00:ff:ff:fe", "leaf": led,
                           "leaf_port": hp, "pod": k - 1, "edge": h - 1,
                           "collector": True}

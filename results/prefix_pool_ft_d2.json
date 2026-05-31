@@ -1,0 +1,136 @@
+{
+  "label": "pool_ft_d2",
+  "k": 4,
+  "packets": 9102,
+  "truth": [
+    1537,
+    2053
+  ],
+  "n_tests": 12529,
+  "observed_ports": 29,
+  "src_pods": [
+    "0",
+    "1",
+    "2",
+    "3"
+  ],
+  "target_coverage": {
+    "1537": 157,
+    "2053": 9129
+  },
+  "f1_vs_m": [
+    {
+      "m": 10,
+      "prec": 1.0,
+      "rec": 0.5,
+      "f1": 0.6667,
+      "positives": 5,
+      "pred_n": 1
+    },
+    {
+      "m": 20,
+      "prec": 1.0,
+      "rec": 0.5,
+      "f1": 0.6667,
+      "positives": 13,
+      "pred_n": 1
+    },
+    {
+      "m": 40,
+      "prec": 1.0,
+      "rec": 0.5,
+      "f1": 0.6667,
+      "positives": 31,
+      "pred_n": 1
+    },
+    {
+      "m": 80,
+      "prec": 1.0,
+      "rec": 0.5,
+      "f1": 0.6667,
+      "positives": 70,
+      "pred_n": 1
+    },
+    {
+      "m": 160,
+      "prec": 1.0,
+      "rec": 0.5,
+      "f1": 0.6667,
+      "positives": 143,
+      "pred_n": 1
+    },
+    {
+      "m": 320,
+      "prec": 1.0,
+      "rec": 0.5,
+      "f1": 0.6667,
+      "positives": 279,
+      "pred_n": 1
+    },
+    {
+      "m": 640,
+      "prec": 1.0,
+      "rec": 1.0,
+      "f1": 1.0,
+      "positives": 521,
+      "pred_n": 2
+    },
+    {
+      "m": 1280,
+      "prec": 1.0,
+      "rec": 1.0,
+      "f1": 1.0,
+      "positives": 1009,
+      "pred_n": 2
+    },
+    {
+      "m": 2560,
+      "prec": 1.0,
+      "rec": 1.0,
+      "f1": 1.0,
+      "positives": 1963,
+      "pred_n": 2
+    },
+    {
+      "m": 5120,
+      "prec": 1.0,
+      "rec": 1.0,
+      "f1": 1.0,
+      "positives": 3940,
+      "pred_n": 2
+    },
+    {
+      "m": 10240,
+      "prec": 1.0,
+      "rec": 1.0,
+      "f1": 1.0,
+      "positives": 7704,
+      "pred_n": 2
+    },
+    {
+      "m": 12529,
+      "prec": 1.0,
+      "rec": 1.0,
+      "f1": 1.0,
+      "positives": 9203,
+      "pred_n": 2
+    }
+  ],
+  "min_m_global_f1_0.95": 640,
+  "per_target": [
+    {
+      "port_uid": 1537,
+      "coverage": 157,
+      "first_recovered_m": 640,
+      "stable_recovered_m": 640
+    },
+    {
+      "port_uid": 2053,
+      "coverage": 9129,
+      "first_recovered_m": 10,
+      "stable_recovered_m": 10
+    }
+  ],
+  "indistinguishable_groups": [],
+  "target_in_indist": []
+}

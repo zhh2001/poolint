@@ -3,7 +3,7 @@ table_add tb_int_source set_int_source 3 =>
 table_add tb_int_source set_int_source 4 =>
 table_add tb_ipv4_lpm set_nhop 10.1.1.1/32 => 3
 table_add tb_ipv4_lpm set_nhop 10.1.1.2/32 => 4
-table_add tb_ipv4_lpm ecmp_group 0.0.0.0/0 => 2
+table_set_default tb_ipv4_lpm ecmp_group 2
 table_add tb_ecmp_nhop set_nhop 0 => 1
 table_add tb_ecmp_nhop set_nhop 1 => 2
 table_add tb_port_idx set_local_idx 4 1 => 0

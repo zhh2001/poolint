@@ -33,7 +33,7 @@ def gen_for_switch(topo, sw):
                 cmds.append("table_add tb_ipv4_lpm set_nhop %s/32 => %d"
                             % (topo.host_ip(nb), port))
         # default -> ECMP up to the h aggs
-        cmds.append("table_add tb_ipv4_lpm ecmp_group 0.0.0.0/0 => %d" % h)
+        cmds.append("table_set_default tb_ipv4_lpm ecmp_group %d" % h)
         for i in range(h):
             cmds.append("table_add tb_ecmp_nhop set_nhop %d => %d" % (i, i + 1))
 
@@ -46,7 +46,7 @@ def gen_for_switch(topo, sw):
                 cmds.append("table_add tb_ipv4_lpm set_nhop 10.%d.%d.0/24 => %d"
                             % (p, e, port))
         # default -> ECMP up to the h cores
-        cmds.append("table_add tb_ipv4_lpm ecmp_group 0.0.0.0/0 => %d" % h)
+        cmds.append("table_set_default tb_ipv4_lpm ecmp_group %d" % h)
         for i in range(h):
             cmds.append("table_add tb_ecmp_nhop set_nhop %d => %d" % (i, i + 1))
 

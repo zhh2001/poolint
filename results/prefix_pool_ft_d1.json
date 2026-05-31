@@ -1,0 +1,120 @@
+{
+  "label": "pool_ft_d1",
+  "k": 4,
+  "packets": 4830,
+  "truth": [
+    1537
+  ],
+  "n_tests": 6865,
+  "observed_ports": 29,
+  "src_pods": [
+    "0",
+    "1",
+    "2",
+    "3"
+  ],
+  "target_coverage": {
+    "1537": 114
+  },
+  "f1_vs_m": [
+    {
+      "m": 10,
+      "prec": 0.0,
+      "rec": 0.0,
+      "f1": 0.0,
+      "positives": 0,
+      "pred_n": 0
+    },
+    {
+      "m": 20,
+      "prec": 0.0,
+      "rec": 0.0,
+      "f1": 0.0,
+      "positives": 0,
+      "pred_n": 0
+    },
+    {
+      "m": 40,
+      "prec": 0.0,
+      "rec": 0.0,
+      "f1": 0.0,
+      "positives": 0,
+      "pred_n": 0
+    },
+    {
+      "m": 80,
+      "prec": 0.0,
+      "rec": 0.0,
+      "f1": 0.0,
+      "positives": 0,
+      "pred_n": 0
+    },
+    {
+      "m": 160,
+      "prec": 0.0,
+      "rec": 0.0,
+      "f1": 0.0,
+      "positives": 0,
+      "pred_n": 0
+    },
+    {
+      "m": 320,
+      "prec": 0.0,
+      "rec": 0.0,
+      "f1": 0.0,
+      "positives": 0,
+      "pred_n": 0
+    },
+    {
+      "m": 640,
+      "prec": 1.0,
+      "rec": 1.0,
+      "f1": 1.0,
+      "positives": 3,
+      "pred_n": 1
+    },
+    {
+      "m": 1280,
+      "prec": 1.0,
+      "rec": 1.0,
+      "f1": 1.0,
+      "positives": 10,
+      "pred_n": 1
+    },
+    {
+      "m": 2560,
+      "prec": 1.0,
+      "rec": 1.0,
+      "f1": 1.0,
+      "positives": 35,
+      "pred_n": 1
+    },
+    {
+      "m": 5120,
+      "prec": 1.0,
+      "rec": 1.0,
+      "f1": 1.0,
+      "positives": 72,
+      "pred_n": 1
+    },
+    {
+      "m": 6865,
+      "prec": 1.0,
+      "rec": 1.0,
+      "f1": 1.0,
+      "positives": 114,
+      "pred_n": 1
+    }
+  ],
+  "min_m_global_f1_0.95": 640,
+  "per_target": [
+    {
+      "port_uid": 1537,
+      "coverage": 114,
+      "first_recovered_m": 640,
+      "stable_recovered_m": 640
+    }
+  ],
+  "indistinguishable_groups": [],
+  "target_in_indist": []
+}
