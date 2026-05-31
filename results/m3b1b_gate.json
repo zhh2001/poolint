@@ -1,0 +1,65 @@
+{
+  "d1": {
+    "label": "d1",
+    "S": [
+      1537
+    ],
+    "pkts": 4830,
+    "obs_ports": 29,
+    "distinct_paths": 15,
+    "nbits": 9660,
+    "match": 9660,
+    "exact": true,
+    "real_pos": 114,
+    "synth_pos": 114
+  },
+  "d2": {
+    "label": "d2",
+    "S": [
+      1537,
+      2053
+    ],
+    "pkts": 9102,
+    "obs_ports": 29,
+    "distinct_paths": 15,
+    "nbits": 18204,
+    "match": 18204,
+    "exact": true,
+    "real_pos": 9203,
+    "synth_pos": 9203
+  },
+  "d3": {
+    "label": "d3",
+    "S": [
+      257,
+      2053,
+      4097
+    ],
+    "pkts": 7465,
+    "obs_ports": 29,
+    "distinct_paths": 15,
+    "nbits": 14930,
+    "match": 14930,
+    "exact": true,
+    "real_pos": 7769,
+    "synth_pos": 7769
+  },
+  "d5": {
+    "label": "d5",
+    "S": [
+      770,
+      1537,
+      2053,
+      3073,
+      3586
+    ],
+    "pkts": 6504,
+    "obs_ports": 29,
+    "distinct_paths": 15,
+    "nbits": 13008,
+    "match": 13008,
+    "exact": true,
+    "real_pos": 6958,
+    "synth_pos": 6958
+  }
+}
